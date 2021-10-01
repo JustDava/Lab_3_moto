@@ -150,6 +150,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - отправить сообщение о выходе и вернуться
 //
 //
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -277,7 +278,7 @@ void DrawMoto(Graphics& g)
 
     //линейный градиент
     LinearGradientBrush lgb(Rect(100, 100, 700, 700), Color::White, Color::Black, 45.f);
-    Color colors[6] =
+    Color colors[3] =
     {
         Color(255, 225, 240, 225),
         Color(255, 210, 105, 30),
@@ -303,7 +304,7 @@ void DrawMoto(Graphics& g)
     g.FillEllipse(&tb, 350, 420, 120, 120);    //заднее колесо    
     g.FillEllipse(&tb, 630, 420, 120, 120);    //переднее колесо
 
-    HatchBrush hatchBrush(HatchStyleOutlinedDiamond, Color::Gray, Color::White);//спици
+    HatchBrush hatchBrush(HatchStyleOutlinedDiamond, Color::Gray, Color::White);//спицы
     g.FillEllipse(&hatchBrush, 375, 445, 70, 70);    //заднее колесо    
     g.FillEllipse(&hatchBrush, 655, 445, 70, 70);    //переднее колесо
 
@@ -413,10 +414,10 @@ void Display(HDC hdc)
     {
         DrawRocket(temp);
     }
-    else
-    {
-        t = 0;
-    }
+    //else
+    //{
+    //    t = 0;
+    //}
     if (step < 50)
     {
 
@@ -431,7 +432,8 @@ void Display(HDC hdc)
     }
     else
     {
-        step = -1;
+        t = 0;
+        step = 0;
         temp.ResetTransform();
     }
 
